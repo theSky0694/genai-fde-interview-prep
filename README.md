@@ -11,17 +11,18 @@ A focused, evidence-based preparation repository for transitioning from senior i
 
 ## How this repository works
 
-This is not a dump of generated tutorials. The workflow is:
+**Learn → Implement → Review → Improve → Push → Interview Drill → Measure**
 
-**Learn → Implement → Review → Improve → Push → Interview Drill**
-
-Portfolio code should be explainable in an interview. Notes are deliberately concise and interview-oriented.
+Portfolio code should be explainable in an interview. Reported interview experiences are used to continuously test and reweight the preparation plan.
 
 ## Interview HQ
 
 - [Master Roadmap](ROADMAP.md)
 - [Interview Readiness Tracker](INTERVIEW_TRACKER.md)
+- [Interview Evidence & Coverage Dashboard](INTERVIEW_COVERAGE.md)
 - [Failed Question Log](FAILED_QUESTIONS.md)
+- [Reported Interview Experiences](12-reported-interview-experiences/README.md)
+- [Reported Question Index](12-reported-interview-experiences/QUESTION_INDEX.md)
 
 ## Stages
 
