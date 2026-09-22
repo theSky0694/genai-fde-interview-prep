@@ -316,3 +316,21 @@ It means being able to:
 6. handle ambiguous FDE/customer scenarios;
 7. give concise senior-level behavioural examples;
 8. recover well when an interviewer pushes beyond the first answer.
+
+---
+
+# Evidence-driven adjustments — 22 September 2026
+
+Based on the first three reported interview experiences, apply these changes without discarding the stage structure:
+
+- **Start a parallel DSA lane in Stage 1:** 2 problems/week initially; focus on arrays, strings, hash maps, two pointers/sliding window, stack/queue, binary search and core patterns. Kadane's algorithm is the first reported problem.
+- **Expand Stage 1B:** SQLAlchemy engine/session/connection pooling joins FastAPI and async.
+- **Pull retrieval intuition forward:** during Python learning, use document/query examples so Stage 3 is not the first exposure to retrieval.
+- **Deepen Stage 3:** BM25, dense vs sparse, hybrid retrieval, RRF, reranking, structure-aware/parent-child chunking, context expansion, multi-hop retrieval and distributed evidence across long documents.
+- **Add graph retrieval:** Neo4j/knowledge-graph fundamentals after baseline RAG; focus on when relationships justify a graph.
+- **Thread production concerns through Stages 2–5:** cost, security, observability, traceability and evaluation are not postponed until Stage 7.
+- **Stage 5 must include memory engineering:** short-term state, summaries, long-term/semantic memory, context compaction and failure diagnosis.
+- **Stage 6 adds A2A:** compare MCP (tool/context interoperability) with A2A (agent interoperability).
+- **Add an inference engineering module before/within Stage 7:** serving architecture, TTFT/latency/throughput, batching, KV cache, quantization, autoscaling and managed-vs-self-hosted benchmarking.
+- **Add a compact ML fundamentals lane:** logistic regression/sigmoid, SVM/kernels and time-series differencing. Keep P2 until further evidence raises it.
+- **Cloud-specific lane:** learn portable concepts first; map them to AWS Bedrock/AgentCore as a secondary implementation track.
