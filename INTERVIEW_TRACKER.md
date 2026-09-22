@@ -48,6 +48,10 @@ Immediate sequence:
 10. Mini application
 11. Stage interview drill
 
+## Evidence-driven adjustment
+
+Reported interview experiences are mapped against this tracker. Repeated/recent questions can increase topic emphasis; missing roadmap topics can be added. See [INTERVIEW_COVERAGE.md](INTERVIEW_COVERAGE.md).
+
 ## Rule for changing status
 
 A topic does not become 🟢 because notes were read. It becomes interview-ready only after the concept can be explained and applied without significant assistance.
