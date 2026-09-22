@@ -23,6 +23,7 @@ Portfolio code should be explainable in an interview. Reported interview experie
 - [Failed Question Log](FAILED_QUESTIONS.md)
 - [Reported Interview Experiences](12-reported-interview-experiences/README.md)
 - [Reported Question Index](12-reported-interview-experiences/QUESTION_INDEX.md)
+- [Session Log / Resume Point](SESSION_LOG.md)
 
 ## Stages
 
