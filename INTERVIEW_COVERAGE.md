@@ -2,59 +2,57 @@
 
 Last updated: 22 September 2026
 
-This dashboard answers: **Based on the interview evidence collected so far and our roadmap, where do we stand?**
+## Current snapshot
 
-## Measures
+**Reported experiences ingested:** 3  
+**Raw prompts/questions:** ~65  
+**Normalized themes:** 32  
+**Current roadmap stage:** 1A — Python Foundations
 
-### 1. Syllabus Readiness
-How much of the planned curriculum has reached interview-ready status.
+### What the evidence changed
 
-### 2. Reported-Question Coverage
-For ingested reported questions:
-- **Green:** can answer without material help
-- **Amber:** partial / needs hints / incomplete
-- **Red:** cannot yet answer adequately
-- **Untested:** not yet tested
+The original roadmap direction was correct, but these interviews show that several topics need **earlier and deeper emphasis**:
 
-### 3. Evidence-Based Topic Pressure
-Tracks which topics recur across reported experiences. It uses report count, recency, company spread and target-role relevance. It is used to **reweight preparation**, not to make unsupported claims about market-wide frequency.
+1. **Retrieval engineering is now P0.** Do not learn RAG as a simple “embed → vector DB → LLM” pipeline. Prepare hybrid search, BM25, RRF, reranking, metadata, context expansion, multi-hop/distributed evidence and evaluation.
+2. **Python Stage 1B is P0.** Async/FastAPI/database pooling appeared directly and is foundational for production GenAI.
+3. **Agents must be explainable architecturally.** LangGraph nodes/state/routing, failure diagnosis, memory and design justification matter more than framework syntax.
+4. **Production/system design starts earlier.** Cost, observability, security, inference serving and source routing should be threaded into projects rather than deferred to Stage 7.
+5. **Add a light DSA track now.** One reported interview included Kadane; coding cannot wait until the final sprint.
+6. **Add targeted ML fundamentals.** Logistic regression, SVM and time-series appeared, but evidence is currently too thin to divert major time from GenAI.
+7. **AWS-specific material remains secondary unless more target JDs/reports reinforce it.** Learn AgentCore/Bedrock concepts after portable architecture fundamentals.
 
-### 4. Practical Evidence
-Whether a topic is backed by code, tests, architecture work or a project that can be defended.
+## Evidence x readiness
 
-## Baseline
+| Topic | Reports | Readiness | Practical evidence | Priority |
+|---|---:|---|---|---|
+| RAG/retrieval architecture | 3/3 | Untested | None yet | P0 |
+| Hybrid/BM25/RRF/reranking | 2/3 | Untested | None yet | P0 |
+| Chunking/long docs | 2/3 | Untested | None yet | P0 |
+| LangGraph/agents | 3/3 | Untested | Existing professional context, not repo-tested | P0 |
+| Python backend/FastAPI/async | 1/3 | Learning path not reached | None yet | P0 |
+| GenAI production/system design | 2/3 | Untested | Professional architecture experience to map | P0 |
+| Embeddings/vector concepts | 2/3 | Untested | None yet | P1 |
+| MCP/A2A | 2/3 / 1/3 | Untested | Prior exposure, not tested here | P1/P2 |
+| Graph/Neo4j | 2/3 | Untested | None yet | P1 |
+| Inference/quantization | 1/3 | Untested | None yet | P1 |
+| SQLAlchemy/pooling | 1/3 | Not started | None yet | P1 |
+| DSA | 1/3 | Untested | None yet | P1 |
+| Traditional ML | 1/3 | Untested | None yet | P2 |
 
-Reported interview experiences ingested: **0**
+## Where we stand
 
-There is not enough interview-experience evidence yet to reweight the roadmap. Current preparation remains at **Stage 1A — Python Foundations**.
+At this point **coverage cannot honestly be expressed as a percentage** because we have not tested you against these questions yet. “Untested” is intentionally different from “Red.”
 
-## Current emphasis
+The next useful measurement is a baseline diagnostic using a representative subset of these questions. After that, this dashboard can report Green / Amber / Red / Untested counts and drive weekly emphasis.
 
-| Topic | Roadmap status | Report evidence | Practical evidence | Current priority |
-|---|---|---|---|---|
-| Python foundations | Learning | None yet | Not yet | P1 |
-| Production Python / FastAPI | Not started | None yet | Not yet | P1 |
-| LLM fundamentals | Not started | None yet | Not yet | P1 |
-| RAG / retrieval | Not started | None yet | Not yet | P1 |
-| RAG evaluation | Not started | None yet | Not yet | P1 |
-| Agents / tool calling | Not started | None yet | Not yet | P1 |
-| MCP | Not started | None yet | Not yet | P2 |
-| GenAI system design | Not started | None yet | Not yet | P1 |
-| FDE scenarios | Not started | None yet | Not yet | P1 |
-| Behavioural / leadership | Not started | None yet | Not yet | P1 |
+## Reweighting policy
 
-Priorities above are initial roadmap priorities, not LinkedIn-derived conclusions.
+After each batch:
+1. normalize/deduplicate;
+2. count independent experiences and company spread where known;
+3. map to roadmap;
+4. test current readiness where practical;
+5. update priorities;
+6. modify roadmap only when evidence or prerequisite structure warrants it.
 
-## Reweighting rule
-
-After each batch of reported interview questions:
-
-1. normalize and deduplicate questions;
-2. update report counts and company spread;
-3. test/map current readiness;
-4. identify syllabus gaps;
-5. raise/lower topic emphasis where evidence warrants;
-6. update INTERVIEW_TRACKER.md and, when material, ROADMAP.md;
-7. record what changed and why.
-
-This prevents the roadmap from becoming static while also preventing a single anecdotal post from hijacking preparation.
+Anecdotal reports guide preparation; they are not treated as a statistically representative hiring-market dataset.
