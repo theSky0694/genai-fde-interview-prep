@@ -56,6 +56,10 @@ Reported interview experiences are mapped against this tracker. Repeated/recent 
 
 A topic does not become 🟢 because notes were read. It becomes interview-ready only after the concept can be explained and applied without significant assistance.
 
+## Latest checkpoint
+
+See [SESSION_LOG.md](SESSION_LOG.md). Next action: ~15-question baseline diagnostic from the first three reported interview experiences; readiness remains Untested until that diagnostic.
+
 ## Current weak-question queue
 
 See [FAILED_QUESTIONS.md](FAILED_QUESTIONS.md).
