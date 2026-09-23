@@ -1,74 +1,123 @@
 # Batch 002 — Cloud, Inference & GenAI System Design
 
 Source: user-supplied reported interview experience, ingested 22 Sep 2026.
+Expanded 23 Sep 2026 with detailed explanations, diagrams, follow-up
+questions, and mapping to the TxnGuard RAG project.
 
 ## High-priority question map
 
-### Enterprise ingestion
-Discuss connectors/events/batch ingestion, parsing, schema normalization, metadata/ACL preservation, deduplication, chunking, embedding/indexing, retries/idempotency, lineage, incremental updates and deletion propagation.
+## 1. Enterprise ingestion
 
-### Confidential documents / redaction
-Defence in depth: classify data → enforce source ACLs during retrieval → redact/tokenize sensitive fields when appropriate → encrypt in transit/at rest → least-privilege identities → tenant isolation → audit access → control model/provider data handling → avoid sensitive trace/log leakage. Redaction is not a substitute for authorization.
+**30-second answer:** Discuss connectors/events/batch ingestion, parsing,
+schema normalization, metadata/ACL preservation, deduplication, chunking,
+embedding/indexing, retries/idempotency, lineage, incremental updates and
+deletion propagation.
 
-### Legal-document chunking
-Prefer structure-aware boundaries (document → chapter → clause → paragraph), preserve citations/page/section IDs, use parent-child retrieval, limited overlap, metadata filters and context expansion. Tables/footnotes/cross-references may require specialized parsing.
+**Detailed answer:** Enterprise ingestion is an ongoing pipeline, not a one-time script. Production concerns include idempotency, incremental updates, deletion propagation, ACL preservation, lineage and retries.
 
-### RAG cost reduction
-Measure first. Common levers: smaller embedding/generation models where quality permits, cache stable results, incremental rather than full re-indexing, route simple queries without expensive agent loops, retrieve/rerank before sending context, control top-k/context length, batch ingestion, summarize/cache reusable context, and use tiered model routing. Never optimize token cost while destroying retrieval recall.
+```mermaid
+flowchart TD
+    Source[Source: files, DB, API, event stream] --> Parse[Parse & extract text]
+    Parse --> Normalize[Schema normalization]
+    Normalize --> Dedup{New or changed?}
+    Dedup -->|unchanged| Skip[Skip]
+    Dedup -->|new/changed| Chunk[Chunk]
+    Chunk --> Meta[Attach metadata + ACLs]
+    Meta --> Embed[Embed]
+    Embed --> Index[(Vector store)]
+    Source -.deleted.-> Propagate[Delete from index]
+```
 
-### Temperature
-Temperature changes sampling randomness; lower values generally make sampling less variable, but deterministic behaviour also depends on model/API semantics, seed support, model version, prompt, tools and infrastructure. Some reasoning models constrain temperature.
+## 2. Confidential documents / redaction
 
-### MCP architecture
-Host coordinates one or more clients; clients maintain connections to servers; servers expose capabilities such as tools/resources. MCP standardizes discovery/invocation/context exchange across integrations.
+**30-second answer:** Defence in depth: classify data → enforce source ACLs during retrieval → redact/tokenize where appropriate → encrypt → least privilege → tenant isolation → audit → control provider handling → protect traces/logs.
+
+Redaction is not authorization. Unauthorized data should not be retrieved in the first place.
+
+## 3. Legal-document chunking
+
+Prefer structure-aware boundaries, preserve citations/page/section IDs, use parent-child retrieval, metadata filtering and context expansion. Legal docs often require cross-reference awareness and version metadata.
+
+## 4. RAG cost reduction
+
+Measure first. Typical levers: smaller models where acceptable, caching, incremental indexing, query routing, controlled top-k/context length, batching, reusable summaries, tiered model routing.
+
+## 5. Temperature
+
+Lower temperature generally reduces sampling variation, but determinism also depends on model/version, seed support, infrastructure and retrieval/tool behavior.
+
+## 6. MCP architecture
+
+Host coordinates clients; clients connect to servers; servers expose tools/resources.
+
+```mermaid
+flowchart LR
+    Host[Host] --> Client[MCP Client]
+    Client <-->|MCP| Server1[MCP Server A]
+    Client <-->|MCP| Server2[MCP Server B]
+    Server1 --> Tool1[Tool]
+    Server2 --> Resource[Resource]
+```
 
 Resource: https://modelcontextprotocol.io/specification/2025-11-25/architecture
 
-### A2A
-A2A is an open protocol for communication/collaboration between agents. Distinguish it from MCP: MCP primarily standardizes agent/application access to tools/context; A2A focuses on agent-to-agent interoperability.
+## 7. A2A
+
+A2A is agent-to-agent interoperability. MCP is primarily agent/application-to-tools/context interoperability.
 
 Resource: https://a2a-protocol.org/v1.0.0/
 
-### Amazon Bedrock AgentCore
-AgentCore is AWS infrastructure for building/deploying/operating agents, with services including Runtime and Gateway. Runtime supports framework/model flexibility; Gateway can expose tools through MCP. Note that Bedrock Agents Classic is now in maintenance mode for existing customers, so current preparation should emphasize AgentCore.
+## 8. Amazon Bedrock AgentCore
 
-Resources: https://docs.aws.amazon.com/bedrock-agentcore/ ; https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-using.html
+AgentCore provides AWS infrastructure for deploying/operating agents, with services such as Runtime and Gateway.
 
-### Object storage vs SQL
-Object storage: large immutable/semi-structured objects, documents, media, raw lake data, cheap durable storage. SQL: transactional structured data, constraints, joins, indexes and queryable relational state. A RAG ingestion architecture commonly stores originals in object storage and metadata/transactional state in SQL/search/vector systems.
+Resources:
+- https://docs.aws.amazon.com/bedrock-agentcore/
+- https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-using.html
 
-### Data lake
-Know object-storage-based central data layer, raw/curated zones, catalog/governance, ingestion (batch/stream), processing, query engines, security/lineage and lakehouse extensions.
+## 9. Object storage vs SQL
 
-### LLaMA architecture
-Prepare decoder-only Transformer fundamentals plus LLaMA-specific choices (generation dependent): pre-normalization/RMSNorm, SwiGLU, RoPE, attention/KV-cache concepts; newer Llama generations can differ significantly, e.g. Llama 4 uses MoE and native multimodality. Always clarify which LLaMA generation the interviewer means.
+Object storage fits large/semi-structured immutable objects; SQL fits transactional structured state, constraints, joins and indexed relational queries. RAG systems often use both.
+
+## 10. Data lake
+
+Know raw/curated zones, catalogs/governance, batch/stream ingestion, processing, query engines, security and lineage.
+
+## 11. LLaMA architecture
+
+Prepare decoder-only Transformer fundamentals and LLaMA choices such as RMSNorm, SwiGLU and RoPE. Clarify model generation/version because newer Llama generations differ.
 
 Resource: https://huggingface.co/docs/transformers/main/en/model_doc/llama
 
-### Benchmarking self-hosted inference vs AWS/Azure managed
-Use the same model/precision/workload where possible. Measure quality plus TTFT, inter-token latency, end-to-end latency p50/p95/p99, throughput/tokens per second, concurrency, error rate, availability, GPU utilization, cold starts, max context, cost per request/token, operational effort, scaling behaviour and security/compliance. Load-test realistic prompt/output distributions.
+## 12. Benchmarking self-hosted inference vs managed AWS/Azure
 
-### Inference microservice
-API/auth → validation → admission/rate limiting → batching/scheduler → model runtime → streaming → metrics/tracing. Consider model loading, GPU memory, quantization, KV cache, timeouts/cancellation, autoscaling, graceful overload, model versioning and fallback.
+Compare quality plus TTFT, inter-token latency, end-to-end p50/p95/p99, throughput/tokens/sec, concurrency, error rates, availability, GPU utilization, cold starts, max context, cost/request/token and operational burden.
 
-### Quantization
-Represent weights/activations at lower precision (e.g. 8/4-bit) to reduce memory and often improve inference efficiency, trading possible quality loss and hardware/kernel constraints. Compare PTQ vs QAT conceptually.
+## 13. Inference microservice
 
-### Graph construction
-Extract or ingest entities and relationships → normalize/entity-resolve → create nodes/edges/properties → attach provenance → index → query/traverse. In RAG, graphs help with multi-hop/relationship questions and can complement vector retrieval.
+API/auth → validation → admission control → batching/scheduler → model runtime → streaming → metrics/tracing. Consider GPU memory, KV cache, model loading, autoscaling, graceful overload and model versioning.
 
-Resource: https://neo4j.com/docs/neo4j-graphrag-python/current/
+## 14. Quantization
 
-### Observability / traceability
-Trace each request across query transformation, retrieval, reranking, tools, prompts/model calls and output. Capture latency, tokens/cost, model/version, retrieved document IDs/scores, tool calls/errors, evaluation signals and correlation IDs while protecting sensitive data.
+Lower-precision weights/activations reduce memory and may improve inference efficiency, with quality and hardware/kernel trade-offs. Know PTQ vs QAT conceptually.
 
-### CSV query solution
-Clarify file size and query types. Small CSV: parse/dataframe. Large/repeated analytical workloads: ingest into analytical SQL/columnar engine. Natural-language querying should generate constrained/validated queries or code rather than embedding every cell blindly. Preserve schema/types and implement sandboxing/limits.
+## 15. Graph construction
 
-### Traditional ML topics
-These reported questions add a genuine syllabus gap:
+Extract/ingest entities and relationships → normalize/entity resolve → create nodes/edges/properties → attach provenance → index → query/traverse.
+
+## 16. Observability / traceability
+
+Trace query transformation, retrieval, reranking, tools, prompt/model calls and output. Capture latency, tokens/cost, model version, document IDs/scores, tool errors and evaluation signals while protecting sensitive data.
+
+## 17. CSV query solution
+
+Small CSV: dataframe is fine. Large/repeated workloads: ingest into analytical SQL/columnar engine. Natural language querying should generate constrained/validated queries or code; preserve schema/types and sandbox execution.
+
+## 18. Traditional ML topics
+
+Prepare interview depth for:
 - Logistic regression + sigmoid
-- SVM + kernel functions
+- SVM + kernels
 - time-series fundamentals + first differencing
 
-These should be prepared to interview depth, but not allowed to displace the core GenAI/FDE path unless further reports reinforce them.
+Keep this compact unless more evidence increases priority.
