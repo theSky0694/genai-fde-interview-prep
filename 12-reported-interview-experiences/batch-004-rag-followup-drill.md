@@ -1,41 +1,65 @@
 # Batch 004 — RAG Follow-up Interview Drill
 
-Source: user-supplied LinkedIn interview-preparation post, ingested 23 Sep 2026.
+Source: user-supplied LinkedIn interview-preparation post, ingested 23 Sep
+2026. Expanded 23 Sep 2026 with detailed explanations, diagrams, and
+mapping to the TxnGuard RAG project.
 
-> Evidence note: this is an interview-preparation post, not a first-person interview report. It strengthens preparation relevance but is not counted as an additional independent interview experience.
+> Evidence note: this is an interview-preparation post, not a first-person
+> interview report. It strengthens preparation relevance but is not
+> counted as an additional independent interview experience.
 
 ## 1. Why RAG instead of fine-tuning?
 
-**30-second answer:** I choose RAG when the problem is primarily knowledge access rather than changing model behavior. If knowledge is private, frequently updated, large, or answers need citations/provenance, retrieval keeps knowledge outside model weights and lets us update the corpus without retraining. Fine-tuning is more appropriate when I need to change behavior, style, task performance or response format consistently. They are complementary rather than mutually exclusive.
+**30-second answer:** Choose RAG when the problem is primarily knowledge
+access rather than changing model behavior. If knowledge is private,
+frequently updated, large, or answers need citations/provenance, retrieval
+keeps knowledge outside model weights. Fine-tuning is more appropriate for
+behavior, style, task performance or response format.
 
-**Follow-ups:** When would you fine-tune? Can RAG and fine-tuning coexist? What are RAG's latency/failure costs?
+| | RAG | Fine-tuning |
+|---|---|---|
+| Update speed | Re-index | Retrain |
+| Citability | Strong | Weak |
+| Changes behavior/style | No | Yes |
+| Private/frequently changing knowledge | Strong fit | Poorer fit |
+| Stable output style/task specialization | Limited | Strong fit |
 
 ## 2. How did you decide chunk size?
 
-**30-second answer:** I don't start with an arbitrary token count. I inspect document structure and query patterns, choose boundaries that preserve semantic units, then tune size/overlap against retrieval metrics and downstream answer quality. I also preserve section/page/parent metadata so a small retrieval chunk can expand to useful surrounding context.
+Don't start from a magic token number. Inspect document structure and query patterns, preserve semantic units, then tune size/overlap against retrieval metrics and answer quality.
 
-**Trade-off:** Smaller chunks can improve retrieval precision but lose context; larger chunks preserve context but may introduce noise and consume context-window budget.
+Smaller chunks improve precision but risk losing context; larger chunks preserve context but introduce noise and consume context window.
 
 ## 3. Which retrieval method did you use?
 
 Compare:
-- sparse/BM25 — exact terms, IDs, names, jargon;
-- dense/vector — semantic similarity and paraphrases;
-- hybrid — complementary lexical + semantic recall;
-- metadata filters — constrain by tenant, date, type, ACL, product, etc.;
-- reranking — improve precision after broad candidate retrieval.
+- sparse/BM25
+- dense/vector
+- hybrid
+- metadata filtering
+- reranking
 
-**Strong project answer:** explain the data/query failure modes that motivated the selected combination rather than naming a fashionable retriever.
+The strongest answer explains why the chosen method matched specific corpus/query failure modes.
 
 ## 4. How did you evaluate retrieval quality?
 
-With labeled relevant documents/chunks:
-- **Precision@K:** fraction of top-K retrieved items that are relevant.
-- **Recall@K:** fraction of all known relevant items found in top K.
-- **MRR:** rewards placing the first relevant result early.
-- **NDCG@K:** measures ranking quality when relevance can be graded and position matters.
+With labeled relevant chunks:
+- Precision@K
+- Recall@K
+- MRR
+- NDCG@K
 
-Also evaluate contextual relevance and downstream groundedness separately. A good final answer does not prove retrieval was good—the model can sometimes answer despite poor evidence.
+Also evaluate context relevance and groundedness separately. A correct final answer does not prove retrieval was good.
+
+```mermaid
+flowchart TD
+    Q[Test query] --> R[Retrieval]
+    R --> RM["Retrieval metrics"]
+    R --> G[Generation]
+    G --> GM["Generation metrics"]
+    RM -.independent.-> N[Can disagree]
+    GM -.-> N
+```
 
 Resources:
 - https://learn.microsoft.com/azure/architecture/ai-ml/guide/rag/rag-information-retrieval
@@ -48,50 +72,58 @@ Treat hallucination as a system problem:
 2. rerank for precision;
 3. filter/validate evidence;
 4. assemble focused context;
-5. explicitly require evidence-grounded answers and citations;
-6. detect insufficient evidence and abstain/clarify;
-7. evaluate groundedness and regression-test failures.
+5. require evidence-grounded answers and citations;
+6. abstain/clarify when evidence is insufficient;
+7. regression-test failures.
 
 A better prompt alone cannot repair missing/wrong retrieval.
 
+```mermaid
+flowchart TD
+    A[Improve retrieval] --> B[Rerank]
+    B --> C[Validate evidence]
+    C --> D[Assemble context]
+    D --> E[Grounded prompt + citations]
+    E --> F{Enough evidence?}
+    F -->|No| G[Abstain / clarify]
+    F -->|Yes| H[Generate]
+    H --> I[Evaluate]
+```
+
 ## 6. What if the correct document is not retrieved?
 
-First identify whether failure is query understanding, filtering, indexing/chunking or ranking. Depending on the cause:
-- rewrite/expand/decompose query;
-- hybrid retrieval;
-- broaden candidate count;
-- reconsider filters/thresholds;
-- search alternate source/index;
-- retrieve related parent/adjacent chunks;
-- ask a clarifying question;
-- abstain with insufficient evidence.
+Diagnose first:
+- query understanding failure
+- indexing/chunking failure
+- filtering failure
+- ranking failure
 
-Do not blindly lower thresholds: that can increase noise.
+Potential fixes:
+- rewrite/expand/decompose query
+- hybrid retrieval
+- broaden candidate count
+- reconsider filters/thresholds
+- alternate source/index
+- parent/adjacent context
+- clarifying question
+- abstain
 
-## 7. How do you debug a plausible but wrong RAG answer?
+Do not blindly lower thresholds.
 
-Trace each stage with the same request:
+## 7. Debug a plausible but wrong RAG answer
 
-**Query understanding → Retrieval → Fusion → Reranking → Context assembly → Generation → Validation**
+Trace:
+Query understanding → Retrieval → Fusion → Reranking → Context assembly → Generation → Validation
 
-Ask:
-1. Was the query interpreted correctly?
-2. Was the required evidence indexed?
-3. Did retrieval return it?
-4. Did fusion/reranking demote it?
-5. Was it dropped during context packing?
-6. Did the model contradict/misread valid context?
-7. Did validation/evaluation fail to catch it?
-
-Persist retrieved document IDs/scores, reranking results, prompt/context, model/version and trace/correlation ID (subject to privacy/security policy). Convert the incident into a regression test.
+Inspect whether evidence existed, whether it was indexed, retrieved, reranked, packed into context and correctly used by the model. Persist relevant trace information and add the failure as a regression test.
 
 ## Interview pattern
 
-The important lesson is that interviewers can start with “What is RAG?” and immediately move into design justification, evaluation and debugging. Preparation must therefore cover the complete retrieval lifecycle rather than memorized definitions.
+RAG interviews quickly move from definition to design justification, evaluation and debugging. Prepare the complete retrieval lifecycle, not memorized definitions.
 
 ## Authoritative resources
 
-- Microsoft RAG architecture/design: https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide
-- Microsoft information retrieval guidance: https://learn.microsoft.com/azure/architecture/ai-ml/guide/rag/rag-information-retrieval
-- Microsoft RAG evaluators: https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/rag-evaluators
-- Azure hybrid search/RRF: https://learn.microsoft.com/azure/search/hybrid-search-ranking
+- https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide
+- https://learn.microsoft.com/azure/architecture/ai-ml/guide/rag/rag-information-retrieval
+- https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/rag-evaluators
+- https://learn.microsoft.com/azure/search/hybrid-search-ranking
