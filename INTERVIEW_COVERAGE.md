@@ -5,7 +5,8 @@ Last updated: 22 September 2026
 ## Current snapshot
 
 **Reported experiences ingested:** 3  
-**Raw prompts/questions:** ~65  
+**Interview-preparation posts ingested:** 1  
+**Raw prompts/questions:** ~72  
 **Normalized themes:** 32  
 **Current roadmap stage:** 1A — Python Foundations
 
@@ -42,6 +43,8 @@ The original roadmap direction was correct, but these interviews show that sever
 ## Where we stand
 
 At this point **coverage cannot honestly be expressed as a percentage** because we have not tested you against these questions yet. “Untested” is intentionally different from “Red.”
+
+The new RAG follow-up post reinforces the existing P0 emphasis on retrieval design, evaluation and debugging, but does not count as an independent interview experience.
 
 The next useful measurement is a baseline diagnostic using a representative subset of these questions. After that, this dashboard can report Green / Amber / Red / Untested counts and drive weekly emphasis.
 
