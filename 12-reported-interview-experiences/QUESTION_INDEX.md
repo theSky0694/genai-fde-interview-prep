@@ -3,12 +3,13 @@
 Ingested: 22 September 2026
 
 **Reported experiences:** 3  
-**Raw question/prompts:** ~65  
+**Interview-preparation posts:** 1  
+**Raw question/prompts:** ~72  
 **Normalized themes:** 32
 
 | Theme | Evidence across batches | Roadmap | Current readiness | Priority |
 |---|---:|---|---|---|
-| RAG / retrieval architecture | 3/3 | Stages 3–4 | Untested | P0 |
+| RAG / retrieval architecture | 3/3 + prep post | Stages 3–4 | Untested | P0 |
 | Chunking / long-document retrieval | 2/3 | Stage 3 | Untested | P0 |
 | Hybrid retrieval / BM25 / RRF | 2/3 | Stage 3 | Untested | P0 |
 | Agents / LangGraph / tool flow | 3/3 | Stage 5 | Untested | P0 |
@@ -36,3 +37,4 @@ Three experiences are enough to identify preparation gaps, but not enough to cla
 - [Batch 001 — RAG, Retrieval, LangGraph & GraphRAG](batch-001-rag-retrieval-agents.md)
 - [Batch 002 — Cloud, Inference & System Design](batch-002-cloud-inference-system-design.md)
 - [Batch 003 — Python, Backend, RAG & Agents](batch-003-python-backend-rag.md)
+- [Batch 004 — RAG Follow-up Interview Drill](batch-004-rag-followup-drill.md)
