@@ -2,19 +2,24 @@
 
 ## Objective
 
-Become interview-ready for GenAI Engineer / Forward Deployed Engineer roles by combining:
+Become interview-ready for GenAI Engineer / Agentic AI Engineer / Forward Deployed Engineer roles by combining:
 
-- production-oriented Python
+- production-oriented Python and backend/API engineering
 - LLM and GenAI fundamentals
 - RAG and retrieval engineering
-- agentic systems and tool calling
-- backend/API engineering
+- agentic AI: tool use, state, planning, memory and reliable execution
+- LangGraph, MCP and interoperability fundamentals
+- agent/RAG evaluation, observability, security and governance
 - GenAI system design
 - customer/problem-solving skills expected from FDEs
 - demonstrable, explainable GitHub projects
 - repeated interview practice
 
-This roadmap assumes strong existing enterprise integration/API experience and therefore does **not** follow a generic beginner-programming curriculum.
+This roadmap assumes strong existing enterprise integration/API experience and does **not** follow a generic beginner-programming curriculum.
+
+**Core progression:** Python → Backend/FastAPI → LLM fundamentals → RAG → Production RAG → Agentic AI → MCP/interoperability → Production GenAI/System Design → Portfolio/Interviews.
+
+Agentic AI extends the roadmap rather than replacing its foundations. Python, APIs, LLM fundamentals and retrieval remain prerequisites.
 
 ---
 
@@ -54,6 +59,7 @@ Learn:
 - Pydantic
 - async/await
 - FastAPI
+- SQLAlchemy engine/session/connection pooling
 - logging
 - environment/configuration management
 - pytest
@@ -68,6 +74,8 @@ Interview bar:
 - explain sync vs async
 - design and implement an API
 - discuss validation, failures, testing and observability
+
+**Parallel DSA lane:** start with 2 problems/week: arrays, strings, hash maps, two pointers/sliding window, stack/queue, binary search and core patterns.
 
 ---
 
@@ -87,15 +95,18 @@ Learn:
 - model selection
 - latency/cost/quality trade-offs
 - hallucinations and limitations
+- foundations of function/tool calling
 
 Build:
 - model client abstraction
 - structured-output application
 - prompt evaluation experiments
+- first schema-constrained tool call
 
 Interview bar:
-- explain how an LLM application works end-to-end
+- explain an LLM application end-to-end
 - discuss model selection and production trade-offs
+- distinguish plain generation, structured output and tool calling
 - diagnose common prompt/application failures
 
 ---
@@ -104,15 +115,20 @@ Interview bar:
 **Window:** Nov 2026
 
 Learn:
-- embeddings and similarity
-- cosine similarity
+- embeddings and cosine similarity
 - chunking strategies
-- metadata
+- metadata and indexing
 - vector databases
-- indexing
 - semantic vs keyword search
+- dense vs sparse retrieval
+- BM25
 - hybrid search
+- RRF
 - reranking
+- structure-aware and parent-child chunking
+- context expansion
+- multi-hop/distributed-evidence retrieval
+- graph retrieval fundamentals and when relationships justify a graph
 - RAG pipeline design
 
 Build progressively:
@@ -121,11 +137,13 @@ Build progressively:
 3. metadata filtering
 4. hybrid retrieval
 5. reranking
+6. structure-aware/context-expanded retrieval
 
 Interview bar:
 - design a RAG pipeline on a whiteboard
 - justify chunking/retrieval decisions
 - diagnose poor retrieval
+- explain hybrid/fusion/reranking trade-offs
 
 ---
 
@@ -133,17 +151,16 @@ Interview bar:
 **Window:** Nov–Dec 2026
 
 Learn:
-- retrieval metrics
-- answer-quality evaluation
-- groundedness
-- synthetic test sets
+- Precision@K, Recall@K, MRR and NDCG intuition
+- answer-quality evaluation and groundedness
+- synthetic/labeled test sets
 - observability/tracing
-- caching
-- latency
-- access control
+- caching and latency
+- access control and confidential data
 - prompt injection considerations
 - document ingestion pipelines
 - production failure modes
+- cost controls and model routing
 
 Build:
 - evaluated RAG API
@@ -154,92 +171,171 @@ Build:
 Interview bar:
 - answer “How do you know your RAG system is good?”
 - debug retrieval vs generation failures
-- discuss enterprise security and scalability
+- discuss enterprise security, cost and scalability
 
 ---
 
-## Stage 5 — Tool Calling, LangGraph & Agents
+## Stage 5 — Agentic AI, Tool Calling & LangGraph
 **Window:** Dec 2026–Jan 2027
 
-Learn:
-- tool/function calling
-- agent loops
-- state
-- planning vs workflows
-- LangGraph
-- checkpoints
-- human-in-the-loop
-- memory patterns
-- retries and failure recovery
-- multi-agent trade-offs
+This is now a **core track**, not an optional extension.
 
-Build:
-- tool-using assistant
-- stateful LangGraph workflow
-- agent with guarded/reliable execution
+### 5A — From LLM calls to agents
+Learn the progression:
+**LLM call → structured output → tool calling → tool loop → stateful workflow → agent**
+
+Learn:
+- function/tool schemas
+- tool selection and execution
+- tool-result feedback loops
+- deterministic workflows vs agentic decision-making
+- agent loops and stopping conditions
+- routing
+- planning vs workflows
+- when **not** to use an agent
+
+### 5B — LangGraph and reliable orchestration
+Learn:
+- nodes, edges and shared state
+- conditional routing
+- checkpoints/durable execution
+- retries/timeouts/failure recovery
+- human-in-the-loop and approval gates
+- interrupt/resume patterns
+- idempotent tool execution
+- auditability
+
+### 5C — Agent memory
+Learn:
+- thread/short-term state
+- sliding windows
+- summaries/context compaction
+- structured task state
+- semantic/episodic long-term memory
+- selective memory retrieval
+- memory write/read policies
+- memory failure modes
+
+### 5D — Planning and multi-agent fundamentals
+Learn:
+- router patterns
+- planner/executor pattern
+- reflection/critique concepts without over-engineering
+- supervisor/worker patterns
+- single-agent vs multi-agent trade-offs
+- delegation and communication boundaries
+
+Do **not** learn multiple frameworks for framework collecting. LangGraph remains the primary implementation framework; other frameworks are conceptual comparison only.
+
+Build progressively:
+1. deterministic tool-using workflow
+2. tool-loop agent
+3. stateful LangGraph workflow
+4. RAG tool inside the agent
+5. SQL/API tools
+6. checkpointing + human approval
+7. memory-enabled workflow
+8. guarded/reliable agent with failure handling
 
 Interview bar:
 - distinguish workflow from agent
-- explain when *not* to use agents
-- design reliable agent execution
+- explain when not to use an agent
+- design state and tool boundaries
+- diagnose a wrong agent answer from trace → routing → retrieval/tool → state → model
+- explain memory choices
+- defend single-agent vs multi-agent architecture
 
 ---
 
-## Stage 6 — MCP & Agent Architecture
+## Stage 6 — MCP, A2A & Agent Architecture
 **Window:** Jan 2027
 
 Learn:
-- MCP concepts
-- client/server architecture
+- MCP concepts and client/server architecture
 - tools/resources/prompts
-- security boundaries
-- enterprise tool integration
-- agent interoperability
+- discovery and invocation
+- direct tools vs MCP
+- authentication/security boundaries
+- reusable enterprise tool integration
+- MCP operational trade-offs
+- A2A fundamentals
+- MCP vs A2A
+- interoperability vs application-specific orchestration
 
 Build:
 - small MCP server
-- agent consuming MCP tools
+- LangGraph agent consuming MCP tools
+- one reusable tool exposed both conceptually/directly and via MCP for comparison
 
 Interview bar:
 - explain why MCP exists
-- compare direct tool integrations with MCP
-- discuss authentication/security/deployment implications
+- justify direct integration vs MCP
+- explain MCP vs A2A
+- discuss authentication, authorization, deployment and trust boundaries
 
 ---
 
-## Stage 7 — GenAI/FDE System Design
+## Stage 7 — Production Agentic AI & GenAI/FDE System Design
 **Window:** Jan–Feb 2027
 
-Learn and practise:
-- multi-tenant GenAI systems
-- API gateway and authentication
+### Agent production engineering
+Learn:
+- agent tracing and step-level observability
+- tool-call metrics and failure classification
+- agent evaluation and trajectory evaluation
+- task-success metrics
+- deterministic regression tests around nondeterministic models
+- tool permissions/least privilege
+- prompt injection and tool-abuse risks
+- approval gates for high-impact actions
+- retries, budgets, loop limits and timeouts
+- idempotency and duplicate-action prevention
+- model/tool fallback
+- latency and cost budgets
+- state persistence and recovery
+
+### Inference engineering
+Learn:
+- serving architecture
+- TTFT, inter-token latency, throughput
+- batching
+- KV cache
+- quantization
+- autoscaling
+- managed vs self-hosted benchmarking
+
+### GenAI/FDE system design
+Practise:
+- multi-tenant GenAI/agent systems
+- API gateway/authentication
 - model gateways
 - queues and asynchronous processing
 - caching
 - vector infrastructure
-- observability
-- evaluation
-- cost controls
+- observability/evaluation
 - PII/data governance
-- resilience
-- scaling
-- deployment patterns
+- resilience/scaling/deployment
+- agent security and governance
 
 FDE scenarios:
 - ambiguous customer requirement → technical design
+- deterministic workflow vs agent decision
 - prototype → production
-- integration with existing enterprise systems
-- debugging in customer environments
+- integration with enterprise systems
+- debugging customer environments
 - communicating trade-offs to technical/non-technical stakeholders
 
 Build:
 - architecture case studies
 - system-design documents
 - implementation spikes
+- agent evaluation/observability dashboard or report
 
 Interview bar:
 - conduct 45–60 minute system-design discussions
 - clarify requirements before designing
+- defend why an agent is/isn't appropriate
+- design safe, observable and recoverable agent systems
 - defend trade-offs rather than reciting architectures
 
 ---
@@ -247,24 +343,37 @@ Interview bar:
 ## Stage 8 — Portfolio & Interview Sprint
 **Window:** Feb–Mar 2027
 
-### Flagship projects
+### Flagship evolution
 
-**Project A — Enterprise RAG Platform**
+**Project A — TxnGuard: Enterprise RAG → Agentic RAG Platform**
+
+Progressively evolve the same system:
+**RAG → advanced retrieval → evaluated RAG → RAG tool → LangGraph agent → multi-tool agent → MCP-enabled integration → production API**
+
+Target capabilities:
 - ingestion
-- hybrid retrieval
-- reranking
-- citations
-- evaluation
-- API
-- observability
-- security considerations
+- hybrid retrieval + reranking
+- citations/evaluation
+- FastAPI
+- RAG tool
+- SQL/structured-data tool
+- controlled tool execution
+- LangGraph state/checkpointing
+- human approval where appropriate
+- memory only where justified
+- MCP integration
+- tracing/auditability
+- security/guardrails
+- tests and failure scenarios
 
 **Project B — Agentic Developer / Operations Assistant**
-- tools
-- LangGraph
+- repository/operations tools
+- LangGraph orchestration
 - controlled execution
 - MCP integration
 - state/checkpointing
+- approval gates
+- observability/evaluation
 - auditability
 
 Projects must have:
@@ -274,16 +383,19 @@ Projects must have:
 - tests
 - meaningful README
 - design decisions/trade-offs
+- evaluation
 - known limitations
+- explicit explanation of where deterministic workflow is preferred over agent autonomy
 
 ### Interview sprint
-
 Practise repeatedly:
-- Python coding
-- GenAI fundamentals
-- RAG
-- agents
-- system design
+- Python coding + DSA
+- GenAI/LLM fundamentals
+- RAG/retrieval
+- agentic AI/LangGraph
+- tool calling/MCP/A2A
+- agent debugging/evaluation
+- production/system design
 - FDE customer scenarios
 - project deep dives
 - behavioural/leadership stories
@@ -294,14 +406,27 @@ Every failed or weak answer goes into FAILED_QUESTIONS.md.
 
 # Weekly operating model
 
-A normal week should include:
+A normal week includes:
 - concept learning
 - hands-on implementation
 - one code review/refactor session
 - interview questions
 - one cumulative revision session
 
-Do not wait until March to start interviewing practice. Interview questions begin during Stage 1.
+During Stages 3–7, prefer **evolving TxnGuard** over repeatedly creating disconnected demo projects.
+
+Do not wait until March for interviews. Interview practice begins during Stage 1.
+
+# Scope guardrails
+
+To keep the March 2027 target realistic:
+- LangGraph is the primary agent framework.
+- Do not spend weeks learning CrewAI/AutoGen/etc. unless a target role specifically requires one.
+- Multi-agent is learned after reliable single-agent workflows.
+- Agentic AI does not replace RAG, Python or backend fundamentals.
+- Prefer deterministic workflows when the execution path is known.
+- Every new agent capability must be testable, observable and explainable.
+- Cloud-specific products remain secondary to portable architecture concepts.
 
 # Definition of interview-ready
 
@@ -311,26 +436,29 @@ It means being able to:
 1. code comfortably in Python under interview conditions;
 2. explain LLM/RAG/agent fundamentals without memorised scripts;
 3. build and debug a realistic GenAI service;
-4. design production GenAI architectures and defend trade-offs;
-5. deeply explain portfolio and professional projects;
-6. handle ambiguous FDE/customer scenarios;
-7. give concise senior-level behavioural examples;
-8. recover well when an interviewer pushes beyond the first answer.
+4. build a tool-using stateful agent and explain every architectural decision;
+5. evaluate/debug agent trajectories, tools, retrieval and generation separately;
+6. design production GenAI/agent architectures and defend trade-offs;
+7. deeply explain portfolio and professional projects;
+8. handle ambiguous FDE/customer scenarios;
+9. give concise senior-level behavioural examples;
+10. recover well when an interviewer pushes beyond the first answer.
 
 ---
 
-# Evidence-driven adjustments — 22 September 2026
+# Evidence-driven adjustments — 22–24 September 2026
 
-Based on the first three reported interview experiences, apply these changes without discarding the stage structure:
+The first reported interview batches already reinforce the expanded agentic track:
 
-- **Start a parallel DSA lane in Stage 1:** 2 problems/week initially; focus on arrays, strings, hash maps, two pointers/sliding window, stack/queue, binary search and core patterns. Kadane's algorithm is the first reported problem.
-- **Expand Stage 1B:** SQLAlchemy engine/session/connection pooling joins FastAPI and async.
-- **Pull retrieval intuition forward:** during Python learning, use document/query examples so Stage 3 is not the first exposure to retrieval.
-- **Deepen Stage 3:** BM25, dense vs sparse, hybrid retrieval, RRF, reranking, structure-aware/parent-child chunking, context expansion, multi-hop retrieval and distributed evidence across long documents.
-- **Add graph retrieval:** Neo4j/knowledge-graph fundamentals after baseline RAG; focus on when relationships justify a graph.
-- **Thread production concerns through Stages 2–5:** cost, security, observability, traceability and evaluation are not postponed until Stage 7.
-- **Stage 5 must include memory engineering:** short-term state, summaries, long-term/semantic memory, context compaction and failure diagnosis.
-- **Stage 6 adds A2A:** compare MCP (tool/context interoperability) with A2A (agent interoperability).
-- **Add an inference engineering module before/within Stage 7:** serving architecture, TTFT/latency/throughput, batching, KV cache, quantization, autoscaling and managed-vs-self-hosted benchmarking.
-- **Add a compact ML fundamentals lane:** logistic regression/sigmoid, SVM/kernels and time-series differencing. Keep P2 until further evidence raises it.
-- **Cloud-specific lane:** learn portable concepts first; map them to AWS Bedrock/AgentCore as a secondary implementation track.
+- **Python/backend remains foundational:** FastAPI, async and SQLAlchemy/pooling stay early.
+- **Retrieval remains P0:** BM25, dense/sparse, hybrid retrieval, RRF, reranking, structure-aware chunking, context expansion and multi-hop retrieval.
+- **Agentic AI is promoted to a core track:** tool loops, LangGraph state/routing, memory, failure diagnosis, human-in-the-loop and reliable execution.
+- **MCP is deepened; A2A remains fundamental/interview depth:** interoperability follows tool-calling fundamentals rather than preceding them.
+- **Production concerns move earlier:** cost, security, observability, traceability and evaluation are threaded through RAG and agent stages.
+- **Agent evaluation is explicitly added:** task success, trajectory/tool-call inspection, regression cases and failure classification.
+- **Inference engineering remains before/within system design:** serving, TTFT/latency/throughput, batching, KV cache, quantization, autoscaling and managed-vs-self-hosted benchmarking.
+- **Parallel DSA continues:** initially 2 problems/week.
+- **Compact ML fundamentals remain P2:** logistic regression/sigmoid, SVM/kernels and time-series differencing.
+- **Cloud-specific lane remains secondary:** portable concepts first; AWS Bedrock/AgentCore can be mapped afterward.
+
+The March 2027 target remains unchanged. The additional Agentic AI scope is absorbed mainly by deepening Stages 5–7 and evolving the same flagship project rather than adding months of separate framework study.
