@@ -23,6 +23,8 @@ Portfolio code should be explainable in an interview. Reported interview experie
 - [Failed Question Log](FAILED_QUESTIONS.md)
 - [Reported Interview Experiences](12-reported-interview-experiences/README.md)
 - [Reported Question Index](12-reported-interview-experiences/QUESTION_INDEX.md)
+- [GenAI Engineering Research Digest](13-genai-engineering-research/2026-09-25-digest.md)
+- [Repository Working Rules](AGENTS.md)
 - [Session Log / Resume Point](SESSION_LOG.md)
 
 ## Stages
