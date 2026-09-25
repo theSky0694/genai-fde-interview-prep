@@ -1,6 +1,6 @@
 # Reported Question Index
 
-Ingested: 22 September 2026
+Ingested: 22 September 2026; supplementary sourced batch added 26 September 2026
 
 **Reported experiences:** 3  
 **Interview-preparation posts:** 1  
@@ -28,6 +28,10 @@ Ingested: 22 September 2026
 | Traditional ML (LR/SVM/time series) | 1/3 | New gap | Untested | P2 |
 | DSA / Kadane | 1/3 | New recurring coding track | Untested | P1 |
 
+## Supplementary source status — 26 September 2026
+
+[Batch 005](batch-005-linkedin-rag-vector-llm-ops.md) adds two public firsthand LinkedIn accounts (one candidate, one interviewer) and one labeled secondhand account. Their RAG, vector-search and production-API themes overlap existing categories. Baseline counts above remain unchanged until independence from the earlier user-supplied experiences can be verified; no new theme or readiness claim is inferred.
+
 ## Interpretation
 
 Three experiences are enough to identify preparation gaps, but not enough to claim market-wide frequency. The strongest immediate signal is that retrieval is tested as an **engineering system**, not merely as a definition of RAG.
@@ -38,3 +42,4 @@ Three experiences are enough to identify preparation gaps, but not enough to cla
 - [Batch 002 — Cloud, Inference & System Design](batch-002-cloud-inference-system-design.md)
 - [Batch 003 — Python, Backend, RAG & Agents](batch-003-python-backend-rag.md)
 - [Batch 004 — RAG Follow-up Interview Drill](batch-004-rag-followup-drill.md)
+- [Batch 005 — LinkedIn Document RAG, Vector Search & LLM API Operations](batch-005-linkedin-rag-vector-llm-ops.md)
