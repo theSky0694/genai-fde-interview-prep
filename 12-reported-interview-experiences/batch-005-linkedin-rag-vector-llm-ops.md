@@ -171,3 +171,22 @@ A: Only if authorization and document versions are part of the validity contract
 3. **Interview practice:** Explain the 30-second answer first, then defend one trade-off and one failure case without notes.
 
 Do not mark a question interview-ready until Aakash has answered it and defended the trade-offs. The report sources describe prompts; all answer architectures, drills and follow-up answers above are preparation material written for this repository, not claims that those precise responses were given in the interviews.
+
+
+## Beginner-first concept and project bridge (26 Oct 2026)
+
+**Read first:** [Concept foundations](../00-genai-concept-foundations.md). The existing interview answers above are the *destination*, not the starting point.
+
+### Concept explained — PDFs with tables, vector search and resilient LLM APIs
+A PDF is a layout format, not a clean database. **Extraction** reconstructs text, tables and page context; poor extraction means retrieval cannot find facts. A **vector database** searches embeddings, but keyword search may be better for policy IDs. An **LLM-backed API** still needs standard integration reliability: bounded retries, backoff, idempotency decisions, timeouts and rate limits.
+
+### Project exercise — learn by building
+Make a two-page synthetic PDF with a table of transaction limits. Inspect extracted rows before indexing. Build /search and /ask endpoints; add a mock 429 response and verify bounded retry behavior. Record when an answer must abstain because table extraction failed.
+
+### Interview follow-ups, with reasoning
+Why not embed the whole PDF? A single vector hides granular answers and exceeds practical context. Why not retry every failure? Retries can amplify outages or duplicate side effects.
+
+### Learning checkpoint
+Explain the idea without jargon; run or design the exercise; show the expected observation and one failure mode; only then attempt the senior-level questions above. Do not change readiness to 'ready' merely because this was read.
+
+**Practitioner explanation:** [Read the blog / LinkedIn tutorial](https://medium.com/@iamabhinav30/smarter-search-starts-with-smarter-chunks-55b9c0ca0b1d). This is a teaching resource, **not** evidence that an interviewer asked a question. Also use the additional Medium and LinkedIn reading list in the concept foundations guide.
