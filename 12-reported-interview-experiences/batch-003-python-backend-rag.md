@@ -108,3 +108,22 @@ Follow-ups:
 - all-negative input
 - empty input contract
 - brute-force vs Kadane
+
+
+## Beginner-first concept and project bridge (26 Oct 2026)
+
+**Read first:** [Concept foundations](../00-genai-concept-foundations.md). The existing interview answers above are the *destination*, not the starting point.
+
+### Concept explained — Python/FastAPI, concurrency and agent memory
+**Async** helps when a request spends time waiting for I/O, such as an LLM or database call; it does not make CPU-bound PDF parsing magically faster. **Connection pooling** reuses DB connections and caps simultaneous use. **Conversation memory** is application-managed history or summaries sent to a model, not a magical persistent memory inside the LLM.
+
+### Project exercise — learn by building
+Extend the /ask API with a request ID, timeout and two simulated slow I/O calls. Compare sequential vs concurrent waiting. Then store the last three messages in a Python dictionary keyed by synthetic session ID; explain why this is only a demo, not production persistence.
+
+### Interview follow-ups, with reasoning
+What happens if 200 users hit a 10-connection pool? Some requests wait or time out. Why not send full chat history forever? Context-window limits, privacy and cost.
+
+### Learning checkpoint
+Explain the idea without jargon; run or design the exercise; show the expected observation and one failure mode; only then attempt the senior-level questions above. Do not change readiness to 'ready' merely because this was read.
+
+**Practitioner explanation:** [Read the blog / LinkedIn tutorial](https://www.linkedin.com/pulse/from-overwhelm-action-my-first-ai-agent-langgraph-gemini-bensalem-iqwue). This is a teaching resource, **not** evidence that an interviewer asked a question. Also use the additional Medium and LinkedIn reading list in the concept foundations guide.
