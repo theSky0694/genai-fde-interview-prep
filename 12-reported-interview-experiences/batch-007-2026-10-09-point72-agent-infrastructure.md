@@ -139,3 +139,22 @@ Three reports increase the independent-experience counter by three. Most technic
 4. Keep Question 4 at interview depth; do not turn it into a GPU-kernel study project.
 
 No readiness status changes until Aakash answers or implements the drills.
+
+
+## Beginner-first concept and project bridge (26 Oct 2026)
+
+**Read first:** [Concept foundations](../00-genai-concept-foundations.md). The existing interview answers above are the *destination*, not the starting point.
+
+### Concept explained — Agents, MCP, context and inference performance
+An **agent** is a workflow in which model outputs can influence the next action; it still runs inside application-enforced boundaries. **MCP** standardizes how tools/resources are exposed, not how to authorize sensitive operations. **KV cache** reuses attention keys/values for previously processed tokens during generation; it is an inference optimization, not conversational long-term memory. **FlashAttention** is an efficient attention computation technique, not a new retrieval method.
+
+### Project exercise — learn by building
+Start with a deterministic two-tool Python router: retrieve_policy and escalate_to_human. Add explicit allowlists, argument validation and trace IDs. Only then let a model choose a tool. Test a malicious instruction inside a retrieved document and confirm it cannot trigger an unauthorized tool.
+
+### Interview follow-ups, with reasoning
+When is direct tool calling better than MCP? When a single application owns the interface and interoperability adds no value. Why do agents fail in production? Unbounded loops, ambiguous permissions, brittle tool results and poor observability.
+
+### Learning checkpoint
+Explain the idea without jargon; run or design the exercise; show the expected observation and one failure mode; only then attempt the senior-level questions above. Do not change readiness to 'ready' merely because this was read.
+
+**Practitioner explanation:** [Read the blog / LinkedIn tutorial](https://www.linkedin.com/pulse/hands-on-how-build-langgraph-retrieval-agent-tutorial-hiram-reis-neto-iruff). This is a teaching resource, **not** evidence that an interviewer asked a question. Also use the additional Medium and LinkedIn reading list in the concept foundations guide.
