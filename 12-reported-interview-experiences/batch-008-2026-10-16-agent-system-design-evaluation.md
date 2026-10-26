@@ -117,3 +117,22 @@ These three reports increase the independent-experience counter by three. They a
 4. Review Questions 4 and 5 as architecture decisions, not framework definitions.
 
 No readiness status changes until Aakash answers or implements the drills.
+
+
+## Beginner-first concept and project bridge (26 Oct 2026)
+
+**Read first:** [Concept foundations](../00-genai-concept-foundations.md). The existing interview answers above are the *destination*, not the starting point.
+
+### Concept explained — Multi-agent design, evaluation and enterprise boundaries
+**Multi-agent** means multiple specialized decision-making components, not automatically higher accuracy. Begin with one deterministic pipeline. Split roles only when separate context, tools or responsibilities provide measurable value. **Evaluation** requires a dataset and clear metric; a demo that 'looks good' is not evidence of reliability. **Latency** includes retrieval, reranking, model and network time.
+
+### Project exercise — learn by building
+Measure a baseline /ask request: retrieval milliseconds, model milliseconds and total latency. Add a review node only for unsupported answers. Compare one workflow with a hypothetical planner+researcher+reviewer design; list the extra calls and failure paths.
+
+### Interview follow-ups, with reasoning
+Why might a single agent outperform three? Less orchestration overhead and fewer cascading errors. When is human approval required? Before consequential writes or uncertain high-impact decisions.
+
+### Learning checkpoint
+Explain the idea without jargon; run or design the exercise; show the expected observation and one failure mode; only then attempt the senior-level questions above. Do not change readiness to 'ready' merely because this was read.
+
+**Practitioner explanation:** [Read the blog / LinkedIn tutorial](https://www.linkedin.com/pulse/building-human-in-the-loop-agents-langgraph-complete-roadmap-g8a0c). This is a teaching resource, **not** evidence that an interviewer asked a question. Also use the additional Medium and LinkedIn reading list in the concept foundations guide.
