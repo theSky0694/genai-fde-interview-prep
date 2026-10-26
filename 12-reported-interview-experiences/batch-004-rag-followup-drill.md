@@ -127,3 +127,22 @@ RAG interviews quickly move from definition to design justification, evaluation 
 - https://learn.microsoft.com/azure/architecture/ai-ml/guide/rag/rag-information-retrieval
 - https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/rag-evaluators
 - https://learn.microsoft.com/azure/search/hybrid-search-ranking
+
+
+## Beginner-first concept and project bridge (26 Oct 2026)
+
+**Read first:** [Concept foundations](../00-genai-concept-foundations.md). The existing interview answers above are the *destination*, not the starting point.
+
+### Concept explained — RAG vs fine-tuning, chunk size, evaluation and hallucinations
+**Fine-tuning** changes model behavior/weights through training; **RAG** supplies fresh external facts at request time. Choose RAG for changing policy documents and citations. **Chunk size** balances enough context against retrieval precision. **Recall@3** measures whether at least one relevant passage appears among the top three (for single-relevant-passage questions); it does not measure whether the final answer is correct.
+
+### Project exercise — learn by building
+Write 10 questions about a synthetic policy document, each with an expected source paragraph. Try two chunking strategies. Count how often the correct paragraph appears in top three. Only then call an LLM and separately check whether its cited answer matches the source.
+
+### Interview follow-ups, with reasoning
+Why can retrieval be correct while an answer is wrong? The generator may misread or ignore context. Why can answer sound correct while retrieval is bad? The model may guess.
+
+### Learning checkpoint
+Explain the idea without jargon; run or design the exercise; show the expected observation and one failure mode; only then attempt the senior-level questions above. Do not change readiness to 'ready' merely because this was read.
+
+**Practitioner explanation:** [Read the blog / LinkedIn tutorial](https://medium.com/@lamhot.siagian/the-rag-engineering-blueprint-from-semantic-chunking-to-grounded-answers-0f3444b337c1). This is a teaching resource, **not** evidence that an interviewer asked a question. Also use the additional Medium and LinkedIn reading list in the concept foundations guide.
