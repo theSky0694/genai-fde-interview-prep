@@ -24,3 +24,9 @@ This repository supports Aakash's transition from senior integration engineering
 - Read the existing roadmap, question index, and relevant batch before editing.
 - Do not overwrite user notes or change readiness status without evidence.
 - Use dated, descriptive commits and keep source links intact.
+
+## Beginner-first concept and project pedagogy (mandatory)
+
+The learner is an experienced MuleSoft/API integration developer, **not yet fluent in GenAI**. Weekly content must teach, not merely summarize or test. Never assume knowledge of embeddings, retrieval, tokenization, transformers, RAG, agent state, LangGraph, evaluation, or MCP without introducing prerequisites or linking to an accessible lesson.
+
+For each chosen interview theme, organize learning as: (1) what problem it solves and why, (2) first-principles concept explanation with simple example and familiar API/integration analogy where apt, (3) exact placement in a progressive Python/FastAPI document-RAG/agent project and data flow, (4) small annotated implementation with expected input/output, (5) design choices and trade-offs, (6) beginner then senior interview answers, (7) follow-up questions **and explained answers**, (8) mistakes/debugging, (9) an achievable practice task and validation criteria. Explain terminology before using it. Show the journey from concept to code to project to interview, not just interview Q&A. Prefer fewer thoroughly explained questions to a long shallow list. Cross-link reusable concept lessons, project walkthroughs, and weekly question batches. Preserve all existing notes; do not falsely mark exercises complete.
