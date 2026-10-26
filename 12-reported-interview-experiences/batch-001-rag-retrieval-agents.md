@@ -250,3 +250,23 @@ MCP is useful for standardized reusable tool/context integration across hosts/ag
 - LangGraph: https://docs.langchain.com/oss/python/learn
 - Neo4j GraphRAG: https://neo4j.com/docs/neo4j-graphrag-python/current/
 - MCP: https://modelcontextprotocol.io/specification/2025-11-25/architecture
+
+
+## Beginner-first concept and project bridge (added 26 Oct 2026)
+
+**Start here, not at the interview answers:** [GenAI foundations](../00-genai-concept-foundations.md). You already know APIs; the missing part is understanding what each AI component contributes.
+
+### A worked example: a policy PDF question
+A customer asks: *What is the transfer cap for Tier B?* An LLM by itself may guess. **RAG** means your application first retrieves the relevant policy paragraph, then supplies it as evidence to the LLM. **Chunking** creates searchable paragraphs with page/heading metadata. **Embeddings** turn those paragraphs into semantic vectors; **BM25** searches exact terms like `Tier B`; **hybrid** combines both. **RRF** combines ranks without requiring raw scores to share a scale. **LangGraph** becomes relevant only if you need conditional steps like retrying retrieval or escalating unsupported answers. **Neo4j** is optional if explicit relationships between entities are central; don't introduce it for a simple policy FAQ.
+
+### Build this increment
+Run the standard-library keyword mini-lab in the foundations guide. Then create a 3-page synthetic PDF containing two transfer caps and an exception. Store each chunk with `{doc_id,page,heading,text}`. Ask one exact-match question and one paraphrase. Record which chunk should rank first. This is the beginning of the [enterprise document assistant](../PROJECT_ENTERPRISE_DOCUMENT_ASSISTANT.md), not yet a production RAG system.
+
+### Interview ladder
+- **Beginner:** 'RAG searches trusted data first and passes relevant passages to the LLM, reducing unsupported guesses.'
+- **Intermediate:** 'I split and index documents with metadata, retrieve top-k chunks, and ask the model to cite the sources.'
+- **Senior:** 'I benchmark lexical vs semantic vs hybrid retrieval on labeled questions, enforce document permissions before retrieval/generation, and track Recall@k and groundedness.'
+
+**Common trap:** Saying embeddings 'understand truth.' They encode similarity, not factual correctness.
+
+**Further teaching (non-official):** [Pranay Joshi on chunking](https://medium.com/@jpranay7828/understanding-chunking-strategies-in-retrieval-augmented-generation-rag-a-complete-practical-a1cd8cb346d5), [Abhinav Singh on chunks and retrieval](https://medium.com/@iamabhinav30/smarter-search-starts-with-smarter-chunks-55b9c0ca0b1d), [Hiram Reis Neto's LinkedIn retrieval-agent walkthrough](https://www.linkedin.com/pulse/hands-on-how-build-langgraph-retrieval-agent-tutorial-hiram-reis-neto-iruff). These are tutorials, not interview evidence.
