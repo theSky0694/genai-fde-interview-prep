@@ -117,3 +117,22 @@ These three independent accounts increase the reported-experience counter by thr
 4. Keep the transformer/KV-cache answer to interview depth rather than GPU-kernel depth.
 
 No readiness status changes until Aakash answers or implements the drills.
+
+
+## Beginner-first concept and project bridge (26 Oct 2026)
+
+**Read first:** [Concept foundations](../00-genai-concept-foundations.md). The existing interview answers above are the *destination*, not the starting point.
+
+### Concept explained — LangGraph state, transformers and evidence-led project defence
+A **node** is a Python function performing one step; an **edge** decides what runs next; **state** carries shared data. Think of an orchestration flow with explicit branching, except state is tracked across graph steps. **Self-attention** lets tokens use information from other tokens; a **KV cache** avoids recomputing some past attention values during autoregressive generation. You need conceptual clarity before GPU-level optimization.
+
+### Project exercise — learn by building
+Build a four-step graph: validate question -> retrieve document -> draft cited answer -> check evidence. Run three test questions: answerable, ambiguous and no-evidence. Capture node-by-node state and explain why each transition occurred. Compare against equivalent plain Python if/else.
+
+### Interview follow-ups, with reasoning
+Why use LangGraph instead of ordinary functions? When stateful branching, checkpoints and human review make orchestration complexity worthwhile. How do you prove a RAG improvement? Change one variable, hold the test set constant and compare retrieval and answer metrics separately.
+
+### Learning checkpoint
+Explain the idea without jargon; run or design the exercise; show the expected observation and one failure mode; only then attempt the senior-level questions above. Do not change readiness to 'ready' merely because this was read.
+
+**Practitioner explanation:** [Read the blog / LinkedIn tutorial](https://www.linkedin.com/pulse/ai-agents-langgraph-part-5-my-agent-series-blogs-ajay-taneja-pnsff). This is a teaching resource, **not** evidence that an interviewer asked a question. Also use the additional Medium and LinkedIn reading list in the concept foundations guide.
