@@ -121,3 +121,22 @@ Prepare interview depth for:
 - time-series fundamentals + first differencing
 
 Keep this compact unless more evidence increases priority.
+
+
+## Beginner-first concept and project bridge (26 Oct 2026)
+
+**Read first:** [Concept foundations](../00-genai-concept-foundations.md). The existing interview answers above are the *destination*, not the starting point.
+
+### Concept explained — Cloud, inference, security and architecture
+Start with a single FastAPI service that calls a model. A **token** is a unit of model input/output; more tokens usually mean more cost and latency. **Temperature** influences sampling variability; low temperature does not guarantee factual accuracy. **Quantization** stores model weights at lower numerical precision to reduce memory use, potentially affecting output quality. **Redaction** means removing or masking sensitive data before it reaches logs, prompts or external services. **MCP** is a tool interface; **A2A** concerns communication among agents. Neither is required for your first RAG application.
+
+### Project exercise — learn by building
+Add a cost log for each /ask request: input tokens, output tokens, latency, retrieved chunk IDs and model version. Use synthetic customer data; test whether secret fields appear in logs. Compare two prompt lengths before exploring quantization or managed inference.
+
+### Interview follow-ups, with reasoning
+Why is lower temperature not a hallucination fix? Because the model can deterministically repeat an unsupported answer. Why choose object storage over SQL? Store PDFs in object storage and metadata/permissions in a transactional store when their access patterns differ.
+
+### Learning checkpoint
+Explain the idea without jargon; run or design the exercise; show the expected observation and one failure mode; only then attempt the senior-level questions above. Do not change readiness to 'ready' merely because this was read.
+
+**Practitioner explanation:** [Read the blog / LinkedIn tutorial](https://www.linkedin.com/pulse/agentic-ai-engineer-implementation-foundations-rag-mcp-rastogi-tlxwc). This is a teaching resource, **not** evidence that an interviewer asked a question. Also use the additional Medium and LinkedIn reading list in the concept foundations guide.
