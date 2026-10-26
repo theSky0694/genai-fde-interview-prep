@@ -144,3 +144,22 @@ def first_unique_char(value: str) -> str | None:
 3. Use Questions 2–4 as defence prompts for each decision in TxnGuard.
 
 Do not mark any entry ready until Aakash answers it and defends at least one trade-off.
+
+
+## Beginner-first concept and project bridge (26 Oct 2026)
+
+**Read first:** [Concept foundations](../00-genai-concept-foundations.md). The existing interview answers above are the *destination*, not the starting point.
+
+### Concept explained — Document intelligence architecture and embedding selection
+**Ingestion** is a pipeline: extract, normalize, split, enrich metadata and index. **Embedding model selection** is empirical: compare retrieval on your domain's questions rather than choosing by benchmark reputation. **Structure-aware chunking** respects headings, tables and section boundaries. **Vector store choice** depends on filtering, scale, latency and operations.
+
+### Project exercise — learn by building
+Scale the toy corpus to 20 synthetic policies. Preserve heading and access_group metadata. Evaluate an exact policy-ID question and a paraphrase, then compare lexical vs vector search with a small labeled set. Add access filtering before returning results.
+
+### Interview follow-ups, with reasoning
+Why does a chunk need its parent heading? Otherwise a rule may be separated from its scope. Why is top-1 accuracy insufficient? Relevant evidence may be in multiple passages.
+
+### Learning checkpoint
+Explain the idea without jargon; run or design the exercise; show the expected observation and one failure mode; only then attempt the senior-level questions above. Do not change readiness to 'ready' merely because this was read.
+
+**Practitioner explanation:** [Read the blog / LinkedIn tutorial](https://medium.com/@jpranay7828/understanding-chunking-strategies-in-retrieval-augmented-generation-rag-a-complete-practical-a1cd8cb346d5). This is a teaching resource, **not** evidence that an interviewer asked a question. Also use the additional Medium and LinkedIn reading list in the concept foundations guide.
