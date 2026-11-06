@@ -1,32 +1,38 @@
 # Reported Question Index
 
-Ingested: 22 September 2026; latest sourced batch added 30 October 2026
+Ingested: 22 September 2026; latest sourced batch added 6 November 2026
 
-**Reported experiences:** 14  
+**Reported experiences:** 16  
 **Interview-preparation posts:** 1  
-**Raw question/prompts:** ~100  
-**Normalized themes:** 36
+**Raw question/prompts:** ~140  
+**Normalized themes:** 38
 
 | Theme | Evidence across batches | Roadmap | Current readiness | Priority |
 |---|---:|---|---|---|
-| RAG / retrieval architecture | 7/13 + prep post | Stages 3–4 | Untested | P0 |
-| Chunking / long-document retrieval | 3/13 | Stage 3 | Untested | P0 |
-| Hybrid retrieval / BM25 / RRF | 2/13 | Stage 3 | Untested | P0 |
-| Agents / LangGraph / tool flow | 10/14 | Stage 5 | Untested | P0 |
-| Python backend / async / FastAPI | 5/13 | Stage 1B | Untested | P0 |
-| GenAI system design / production | 12/14 | Stages 4 & 7 | Untested | P0 |
-| Embeddings / vector semantics | 4/13 | Stages 2–3 | Untested | P1 |
-| MCP / interoperability | 5/13 | Stage 6 | Untested | P1 |
-| Graph / Neo4j / GraphRAG | 2/13 | Stage 3/7 extension | Untested | P1 |
-| Inference / optimization / quantization | 4/13 | Stage 2/7 extension | Untested | P1 |
-| Observability / tracing | 4/14 | Stages 4 & 7 | Untested | P1 |
-| Security / confidential data | 1/13 | Stage 4/7 | Untested | P1 |
-| SQLAlchemy / DB pooling | 1/13 | Stage 1B extension | Untested | P1 |
-| Conversation/agent memory | 2/13 | Stage 5 | Untested | P1 |
-| AWS Bedrock / AgentCore | 1/13 | Cloud extension | Untested | P2 |
-| A2A | 1/13 | Stage 6 extension | Untested | P2 |
-| Traditional ML (LR/SVM/time series) | 3/13 | Compact ML track | Untested | P2 |
-| DSA / basic Python coding | 5/13 | Parallel coding track | Untested | P1 |
+| RAG / retrieval architecture | 9/16 + prep post | Stages 3–4 | Untested | P0 |
+| Chunking / long-document retrieval | 5/16 | Stage 3 | Untested | P0 |
+| Hybrid retrieval / BM25 / RRF | 4/16 | Stage 3 | Untested | P0 |
+| Agents / LangGraph / tool flow | 10/16 | Stage 5 | Untested | P0 |
+| Python backend / async / FastAPI | 6/16 | Stage 1B | Untested | P0 |
+| GenAI system design / production | 13/16 | Stages 4 & 7 | Untested | P0 |
+| Embeddings / vector semantics | 6/16 | Stages 2–3 | Untested | P1 |
+| MCP / interoperability | 5/16 | Stage 6 | Untested | P1 |
+| Graph / Neo4j / GraphRAG | 2/16 | Stage 3/7 extension | Untested | P1 |
+| Inference / optimization / quantization | 4/16 | Stage 2/7 extension | Untested | P1 |
+| Observability / tracing | 5/16 | Stages 4 & 7 | Untested | P1 |
+| Security / confidential data | 2/16 | Stage 4/7 | Untested | P1 |
+| SQLAlchemy / DB pooling | 1/16 | Stage 1B extension | Untested | P1 |
+| Conversation/agent memory | 2/16 | Stage 5 | Untested | P1 |
+| AWS Bedrock / AgentCore | 1/16 | Cloud extension | Untested | P2 |
+| A2A | 1/16 | Stage 6 extension | Untested | P2 |
+| Traditional ML (LR/SVM/time series) | 3/16 | Compact ML track | Untested | P2 |
+| DSA / basic Python coding | 6/16 | Parallel coding track | Untested | P1 |
+| Knowledge freshness / index lifecycle | 1/16 | Stages 3, 4 & 7 | Untested | P1 |
+| Provider resilience / degraded service | 1/16 | Stage 7 | Untested | P1 |
+
+## Evidence update — 6 November 2026
+
+[Batch 011](batch-011-2026-11-06-rag-ranking-freshness-resilience.md) adds two independently posted accounts: an anonymous Barclays Pune Software Engineer–GenAI candidate report and Bharath Reddy's first-person interviewer account. Three non-duplicative drills teach bi-encoder versus cross-encoder ranking, safe document/index updates, and LLM-provider outage handling. A reusable [RAG ranking, freshness and resilience lesson](../02-rag-ranking-freshness-resilience.md) and matching project lab were added. Both sources exposed relative timestamps rather than exact dates when verified, which the batch records without inventing dates. The experience counter increases by two; no readiness status changes.
 
 ## Evidence update — 30 October 2026
 
@@ -54,7 +60,7 @@ Ingested: 22 September 2026; latest sourced batch added 30 October 2026
 
 ## Interpretation
 
-Fourteen experiences still do not support market-wide frequency claims. They do provide a stronger role-relevant signal that candidates are expected to connect GenAI concepts with Python, integration boundaries, production failure handling and defensible system design.
+Sixteen experiences still do not support market-wide frequency claims. They do provide a stronger role-relevant signal that candidates are expected to connect GenAI concepts with Python, integration boundaries, production failure handling and defensible system design.
 
 ## Batch notes
 
@@ -68,3 +74,4 @@ Fourteen experiences still do not support market-wide frequency claims. They do 
 - [Batch 008 — Agent System Design, Evaluation & India GenAI Breadth](batch-008-2026-10-16-agent-system-design-evaluation.md)
 - [Batch 009 — LangGraph Coding, Evaluation & Project Defence](batch-009-2026-10-23-langgraph-evaluation-project-defence.md)
 - [Batch 010 — Agent Loop Control & Repeatable Behaviour](batch-010-2026-10-30-agent-loops-repeatability.md)
+- [Batch 011 — RAG Ranking, Freshness & LLM-Service Resilience](batch-011-2026-11-06-rag-ranking-freshness-resilience.md)
