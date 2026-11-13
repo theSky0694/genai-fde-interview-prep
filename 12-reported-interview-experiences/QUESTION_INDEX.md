@@ -1,34 +1,38 @@
 # Reported Question Index
 
-Ingested: 22 September 2026; latest sourced batch added 6 November 2026
+Ingested: 22 September 2026; latest sourced batch added 13 November 2026
 
-**Reported experiences:** 16  
+**Reported experiences:** 17  
 **Interview-preparation posts:** 1  
 **Raw question/prompts:** ~140  
 **Normalized themes:** 38
 
 | Theme | Evidence across batches | Roadmap | Current readiness | Priority |
 |---|---:|---|---|---|
-| RAG / retrieval architecture | 9/16 + prep post | Stages 3–4 | Untested | P0 |
-| Chunking / long-document retrieval | 5/16 | Stage 3 | Untested | P0 |
+| RAG / retrieval architecture | 10/17 + prep post | Stages 3–4 | Untested | P0 |
+| Chunking / long-document retrieval | 6/17 | Stage 3 | Untested | P0 |
 | Hybrid retrieval / BM25 / RRF | 4/16 | Stage 3 | Untested | P0 |
-| Agents / LangGraph / tool flow | 10/16 | Stage 5 | Untested | P0 |
+| Agents / LangGraph / tool flow | 11/17 | Stage 5 | Untested | P0 |
 | Python backend / async / FastAPI | 6/16 | Stage 1B | Untested | P0 |
-| GenAI system design / production | 13/16 | Stages 4 & 7 | Untested | P0 |
-| Embeddings / vector semantics | 6/16 | Stages 2–3 | Untested | P1 |
-| MCP / interoperability | 5/16 | Stage 6 | Untested | P1 |
+| GenAI system design / production | 14/17 | Stages 4 & 7 | Untested | P0 |
+| Embeddings / vector semantics | 7/17 | Stages 2–3 | Untested | P1 |
+| MCP / interoperability | 6/17 | Stage 6 | Untested | P1 |
 | Graph / Neo4j / GraphRAG | 2/16 | Stage 3/7 extension | Untested | P1 |
 | Inference / optimization / quantization | 4/16 | Stage 2/7 extension | Untested | P1 |
 | Observability / tracing | 5/16 | Stages 4 & 7 | Untested | P1 |
 | Security / confidential data | 2/16 | Stage 4/7 | Untested | P1 |
 | SQLAlchemy / DB pooling | 1/16 | Stage 1B extension | Untested | P1 |
-| Conversation/agent memory | 2/16 | Stage 5 | Untested | P1 |
+| Conversation/agent memory | 3/17 | Stage 5 | Untested | P1 |
 | AWS Bedrock / AgentCore | 1/16 | Cloud extension | Untested | P2 |
 | A2A | 1/16 | Stage 6 extension | Untested | P2 |
 | Traditional ML (LR/SVM/time series) | 3/16 | Compact ML track | Untested | P2 |
 | DSA / basic Python coding | 6/16 | Parallel coding track | Untested | P1 |
 | Knowledge freshness / index lifecycle | 1/16 | Stages 3, 4 & 7 | Untested | P1 |
 | Provider resilience / degraded service | 1/16 | Stage 7 | Untested | P1 |
+
+## Evidence update — 13 November 2026
+
+[Batch 012](batch-012-2026-11-13-context-quality-grounding.md) adds one independently posted candidate account describing a GenAI Level 1 Engineer interview at an unnamed Pune startup. The publicly indexed LinkedIn text exposed fifteen questions but no stable direct post URL or exact calendar date, so the batch records the author profile, visible relative timestamp and source limitation without inventing a date or company. Two non-duplicative drills teach context utilization when retrieval succeeds and why a larger context window does not guarantee better RAG. A reusable [context quality and grounding lesson](../03-context-quality-and-grounding.md) and matching project lab were added. The experience counter increases by one, regardless of question count; no readiness status changes.
 
 ## Evidence update — 6 November 2026
 
@@ -60,7 +64,7 @@ Ingested: 22 September 2026; latest sourced batch added 6 November 2026
 
 ## Interpretation
 
-Sixteen experiences still do not support market-wide frequency claims. They do provide a stronger role-relevant signal that candidates are expected to connect GenAI concepts with Python, integration boundaries, production failure handling and defensible system design.
+Seventeen experiences still do not support market-wide frequency claims. They do provide a stronger role-relevant signal that candidates are expected to connect GenAI concepts with Python, integration boundaries, production failure handling and defensible system design.
 
 ## Batch notes
 
@@ -75,3 +79,4 @@ Sixteen experiences still do not support market-wide frequency claims. They do p
 - [Batch 009 — LangGraph Coding, Evaluation & Project Defence](batch-009-2026-10-23-langgraph-evaluation-project-defence.md)
 - [Batch 010 — Agent Loop Control & Repeatable Behaviour](batch-010-2026-10-30-agent-loops-repeatability.md)
 - [Batch 011 — RAG Ranking, Freshness & LLM-Service Resilience](batch-011-2026-11-06-rag-ranking-freshness-resilience.md)
+- [Batch 012 — Context Quality & Grounding Diagnosis](batch-012-2026-11-13-context-quality-grounding.md)
