@@ -52,3 +52,27 @@ Add:
 **Expected result:** the required source ranks in the final top five; duplicate and token counts are recorded; bad index versions never serve traffic; repeated provider failures stop new calls; source-only responses remain tenant-safe.
 
 Keep every readiness status **Untested** until the matching lab runs and the design can be explained.
+
+
+## Reliability increment 3 — context quality and grounded generation
+
+Next complete [Context quality, prompt grounding and lost-in-the-middle](03-context-quality-and-grounding.md) and [Batch 012](12-reported-interview-experiences/batch-012-2026-11-13-context-quality-grounding.md).
+
+Add:
+
+- traceable source IDs from retrieval through final prompt assembly;
+- active document version filtering before generation;
+- a configurable evidence-token budget with output headroom;
+- duplicate and conflict detection;
+- structured evidence blocks with source IDs;
+- citation-support validation after generation.
+
+### Required lab
+
+1. Create 20 questions with known evidence, including multi-document, conflicting-version and unanswerable cases.
+2. Compare final-k values 2, 5, 10 and 20.
+3. Place required evidence first, middle and last.
+4. Inject ten irrelevant chunks and an obsolete conflicting chunk.
+5. Record required-evidence coverage, supported-answer accuracy, refusal, citation validity, tokens and p95 latency.
+
+**Expected result:** obsolete evidence never reaches generation; every factual claim cites a supplied supporting source; unanswerable cases refuse; the chosen context budget is justified by measured quality, cost and latency.
