@@ -76,3 +76,29 @@ Add:
 5. Record required-evidence coverage, supported-answer accuracy, refusal, citation validity, tokens and p95 latency.
 
 **Expected result:** obsolete evidence never reaches generation; every factual claim cites a supplied supporting source; unanswerable cases refuse; the chosen context budget is justified by measured quality, cost and latency.
+
+
+## Reliability increment 4 — tenant isolation and federated sources
+
+Next complete [Enterprise RAG isolation and federated source access](04-enterprise-rag-isolation-federation.md) and [Batch 013](12-reported-interview-experiences/batch-013-2026-11-20-enterprise-rag-isolation-federation.md).
+
+Add:
+
+- a verified principal containing user, tenant and roles;
+- tenant and ACL filtering inside retrieval;
+- authorization again when fetching source text;
+- tenant and permission-scoped caches;
+- policy, ticket and message connectors returning typed evidence;
+- deterministic LangGraph source routing;
+- explicit source errors, deadline and partial-answer status.
+
+### Required lab
+
+1. Create two tenants with similarly worded policies.
+2. Prove explicit and semantic cross-tenant queries return no foreign chunks.
+3. Test concurrent users against the cache.
+4. Add ticket and message sources with source-native authorization.
+5. Run single-source and multi-source questions.
+6. Inject one timeout and one permission denial.
+
+**Expected result:** zero unauthorized evidence in retrieval, prompts, responses and caches; at least 90% source-routing accuracy on the synthetic set; partial responses identify every unavailable required source.
