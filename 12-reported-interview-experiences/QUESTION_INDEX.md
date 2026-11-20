@@ -1,26 +1,26 @@
 # Reported Question Index
 
-Ingested: 22 September 2026; latest sourced batch added 13 November 2026
+Ingested: 22 September 2026; latest sourced batch added 20 November 2026
 
-**Reported experiences:** 17  
+**Reported experiences:** 18  
 **Interview-preparation posts:** 1  
 **Raw question/prompts:** ~140  
 **Normalized themes:** 38
 
 | Theme | Evidence across batches | Roadmap | Current readiness | Priority |
 |---|---:|---|---|---|
-| RAG / retrieval architecture | 10/17 + prep post | Stages 3–4 | Untested | P0 |
+| RAG / retrieval architecture | 11/18 + prep post | Stages 3–4 | Untested | P0 |
 | Chunking / long-document retrieval | 6/17 | Stage 3 | Untested | P0 |
 | Hybrid retrieval / BM25 / RRF | 4/16 | Stage 3 | Untested | P0 |
-| Agents / LangGraph / tool flow | 11/17 | Stage 5 | Untested | P0 |
+| Agents / LangGraph / tool flow | 12/18 | Stage 5 | Untested | P0 |
 | Python backend / async / FastAPI | 6/16 | Stage 1B | Untested | P0 |
-| GenAI system design / production | 14/17 | Stages 4 & 7 | Untested | P0 |
-| Embeddings / vector semantics | 7/17 | Stages 2–3 | Untested | P1 |
+| GenAI system design / production | 15/18 | Stages 4 & 7 | Untested | P0 |
+| Embeddings / vector semantics | 8/18 | Stages 2–3 | Untested | P1 |
 | MCP / interoperability | 6/17 | Stage 6 | Untested | P1 |
 | Graph / Neo4j / GraphRAG | 2/16 | Stage 3/7 extension | Untested | P1 |
 | Inference / optimization / quantization | 4/16 | Stage 2/7 extension | Untested | P1 |
 | Observability / tracing | 5/16 | Stages 4 & 7 | Untested | P1 |
-| Security / confidential data | 2/16 | Stage 4/7 | Untested | P1 |
+| Security / confidential data | 3/18 | Stage 4/7 | Untested | P1 |
 | SQLAlchemy / DB pooling | 1/16 | Stage 1B extension | Untested | P1 |
 | Conversation/agent memory | 3/17 | Stage 5 | Untested | P1 |
 | AWS Bedrock / AgentCore | 1/16 | Cloud extension | Untested | P2 |
@@ -29,6 +29,10 @@ Ingested: 22 September 2026; latest sourced batch added 13 November 2026
 | DSA / basic Python coding | 6/16 | Parallel coding track | Untested | P1 |
 | Knowledge freshness / index lifecycle | 1/16 | Stages 3, 4 & 7 | Untested | P1 |
 | Provider resilience / degraded service | 1/16 | Stage 7 | Untested | P1 |
+
+## Evidence update — 20 November 2026
+
+[Batch 013](batch-013-2026-11-20-enterprise-rag-isolation-federation.md) adds one newly discovered older firsthand candidate account covering a Teradata Cloud AI Engineer process. LinkedIn displayed “2mo Edited” without an exact date, which the batch records without inventing one. Two non-duplicative drills teach tenant-safe vector retrieval and federated RAG across documents, tickets, messages and wiki systems. A reusable [enterprise RAG isolation and federation lesson](../04-enterprise-rag-isolation-federation.md) and matching project lab were added. The experience counter increases by one; readiness remains Untested.
 
 ## Evidence update — 13 November 2026
 
@@ -64,7 +68,7 @@ Ingested: 22 September 2026; latest sourced batch added 13 November 2026
 
 ## Interpretation
 
-Seventeen experiences still do not support market-wide frequency claims. They do provide a stronger role-relevant signal that candidates are expected to connect GenAI concepts with Python, integration boundaries, production failure handling and defensible system design.
+Eighteen experiences still do not support market-wide frequency claims. They do provide a stronger role-relevant signal that candidates are expected to connect GenAI concepts with Python, integration boundaries, production failure handling and defensible system design.
 
 ## Batch notes
 
@@ -80,3 +84,4 @@ Seventeen experiences still do not support market-wide frequency claims. They do
 - [Batch 010 — Agent Loop Control & Repeatable Behaviour](batch-010-2026-10-30-agent-loops-repeatability.md)
 - [Batch 011 — RAG Ranking, Freshness & LLM-Service Resilience](batch-011-2026-11-06-rag-ranking-freshness-resilience.md)
 - [Batch 012 — Context Quality & Grounding Diagnosis](batch-012-2026-11-13-context-quality-grounding.md)
+- [Batch 013 — Enterprise RAG Isolation & Federated Sources](batch-013-2026-11-20-enterprise-rag-isolation-federation.md)
