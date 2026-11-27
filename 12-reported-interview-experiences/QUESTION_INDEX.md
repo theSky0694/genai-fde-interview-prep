@@ -1,34 +1,39 @@
 # Reported Question Index
 
-Ingested: 22 September 2026; latest sourced batch added 20 November 2026
+Ingested: 22 September 2026; latest sourced batch added 27 November 2026
 
-**Reported experiences:** 18  
+**Reported experiences:** 19  
 **Interview-preparation posts:** 1  
-**Raw question/prompts:** ~140  
-**Normalized themes:** 38
+**Raw question/prompts:** ~170  
+**Normalized themes:** 39
 
 | Theme | Evidence across batches | Roadmap | Current readiness | Priority |
 |---|---:|---|---|---|
-| RAG / retrieval architecture | 11/18 + prep post | Stages 3–4 | Untested | P0 |
+| RAG / retrieval architecture | 12/19 + prep post | Stages 3–4 | Untested | P0 |
 | Chunking / long-document retrieval | 6/17 | Stage 3 | Untested | P0 |
 | Hybrid retrieval / BM25 / RRF | 4/16 | Stage 3 | Untested | P0 |
-| Agents / LangGraph / tool flow | 12/18 | Stage 5 | Untested | P0 |
-| Python backend / async / FastAPI | 6/16 | Stage 1B | Untested | P0 |
-| GenAI system design / production | 15/18 | Stages 4 & 7 | Untested | P0 |
+| Agents / LangGraph / tool flow | 13/19 | Stage 5 | Untested | P0 |
+| Python backend / async / FastAPI | 7/17 | Stage 1B | Untested | P0 |
+| GenAI system design / production | 16/19 | Stages 4 & 7 | Untested | P0 |
 | Embeddings / vector semantics | 8/18 | Stages 2–3 | Untested | P1 |
-| MCP / interoperability | 6/17 | Stage 6 | Untested | P1 |
+| MCP / interoperability | 7/18 | Stage 6 | Untested | P1 |
 | Graph / Neo4j / GraphRAG | 2/16 | Stage 3/7 extension | Untested | P1 |
 | Inference / optimization / quantization | 4/16 | Stage 2/7 extension | Untested | P1 |
 | Observability / tracing | 5/16 | Stages 4 & 7 | Untested | P1 |
 | Security / confidential data | 3/18 | Stage 4/7 | Untested | P1 |
 | SQLAlchemy / DB pooling | 1/16 | Stage 1B extension | Untested | P1 |
 | Conversation/agent memory | 3/17 | Stage 5 | Untested | P1 |
+| Human approval / risky actions | 1/19 | Stages 5 & 7 | Untested | P1 |
 | AWS Bedrock / AgentCore | 1/16 | Cloud extension | Untested | P2 |
 | A2A | 1/16 | Stage 6 extension | Untested | P2 |
 | Traditional ML (LR/SVM/time series) | 3/16 | Compact ML track | Untested | P2 |
 | DSA / basic Python coding | 6/16 | Parallel coding track | Untested | P1 |
 | Knowledge freshness / index lifecycle | 1/16 | Stages 3, 4 & 7 | Untested | P1 |
 | Provider resilience / degraded service | 1/16 | Stage 7 | Untested | P1 |
+
+## Evidence update — 27 November 2026
+
+[Batch 014](batch-014-2026-11-27-agent-approval-mcp-transport.md) adds one independently posted first-person account of a Deloitte GenAI Engineer L2 technical round. Medium's accessible index displayed “20 hours ago” when verified on 27 November but did not expose an exact calendar date, so the batch preserves that limitation. Two non-duplicative drills teach durable human approval for risky agent actions and stdio versus Streamable HTTP MCP boundaries. A reusable [agent approval and MCP transport lesson](../05-agent-approval-and-mcp-transport.md) and progressive project lab were added. The experience counter increases by one, regardless of the number of listed questions; readiness remains Untested.
 
 ## Evidence update — 20 November 2026
 
@@ -85,3 +90,4 @@ Eighteen experiences still do not support market-wide frequency claims. They do 
 - [Batch 011 — RAG Ranking, Freshness & LLM-Service Resilience](batch-011-2026-11-06-rag-ranking-freshness-resilience.md)
 - [Batch 012 — Context Quality & Grounding Diagnosis](batch-012-2026-11-13-context-quality-grounding.md)
 - [Batch 013 — Enterprise RAG Isolation & Federated Sources](batch-013-2026-11-20-enterprise-rag-isolation-federation.md)
+- [Batch 014 — Human Approval Gates & MCP Transport Boundaries](batch-014-2026-11-27-agent-approval-mcp-transport.md)
